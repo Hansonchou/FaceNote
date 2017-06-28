@@ -6,28 +6,28 @@
   "background": {
     "persistent": true,
     "scripts": [
-			"background.js"
-		]
+      "background.js"
+    ]
   },
   "permissions": [
-		"https://*/*",
-		"tabs",
-		"identity"
+    "https://*/*",
+    "tabs",
+    "identity"
   ],
   "content_scripts": [
     {
       "matches": ["https://www.facebook.com/*"],
       "js": [
-				"note-requester.js",
-				"facenote-button-handler.js"
-			]
+        "note-requester.js",
+        "facenote-button-handler.js"
+      ]
     }
   ],
   "oauth2": {
     "client_id": "client_id to be used for google api",
     "scopes": [
-				"https://www.googleapis.com/auth/userinfo.email",
-				"https://www.googleapis.com/auth/userinfo.profile"
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/userinfo.profile"
     ]
   }
 }
