@@ -35,7 +35,7 @@ class NoteRequester {
         updateNote(note);
         //  if (JSON.parse(this.response).note.note_content) {
         //    updateNoteContent(JSON.parse(this.response).note.note_content);
-        //		alert("obtained note: " + JSON.parse(this.response).note.note_content);
+        //    alert("obtained note: " + JSON.parse(this.response).note.note_content);
         //  }
       }
     };
