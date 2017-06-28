@@ -1,0 +1,21 @@
+# Log files
+logs/
+
+# Archive file for uploading to chromecast
+Archive.zip
+
+# manifest file in production includes client_id and key.
+manifest.json
+
+# Notes includes all the to-dos, example commands
+NOTES
+
+# chrome key
+key.pem
+
+# Other
+facebook_example_profile_urls.txt
+
+# Unknown
+.DS_Store
+
