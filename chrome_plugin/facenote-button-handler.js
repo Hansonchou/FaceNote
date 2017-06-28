@@ -6,6 +6,8 @@ class FacenoteButtonHandler {
     this.fnId = 'facenoteid';
 		// Class names of profile buttons for locating where to insert FaceNote Button.
 		this.profileButtonClassNames = '_51xa _2yfv _3y89';
+//    // Class names of the Note img.
+//    this.noteImgClassNames = 'img sp_QjB5fuouIiI_2x sx_c4bdfc';
     // Put classes to have FaceNote button style consistent with neighbors.
     this.facenoteClasses = '_42ft _4jy0 _4jy4 _517h _51sy';
 		// Id of overlaying note div.
