@@ -1,10 +1,12 @@
-FaceNote:
+# FaceNote
+
 An solution to your pain in memorizing friends! The app allows you to easily write note for your friend on their Facebook page, noting how you met, what was the last conversation, what is special of that people. A personal CRM tool. 
 
-Chrome extesion:
+# Chrome extesion
 https://chrome.google.com/webstore/detail/facenote-beta/jpjlmcklmfhmapnndjfdlnhlcjodjhkh
 
-Revision History:
+# Revision History
+
 6/27 - 0.1.5: Update the note-request url. Extend permission to all urls.
 5/21 - 0.1.4: Remove the buggy pen icon.
 5/16 - 0.1.3: Regular fix of pen icon.
