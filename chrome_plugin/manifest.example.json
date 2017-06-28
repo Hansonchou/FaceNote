@@ -1,5 +1,5 @@
 {
-	"key": "key value for development use to maintain same app id",
+  "key": "key value for development use to maintain same app id",
   "manifest_version": 2,
   "name": "FaceNote (Beta)",
   "version": "0.1.5",
@@ -14,7 +14,7 @@
 		"tabs",
 		"identity"
   ],
-	"content_scripts": [
+  "content_scripts": [
     {
       "matches": ["https://www.facebook.com/*"],
       "js": [
@@ -24,8 +24,8 @@
     }
   ],
   "oauth2": {
-      "client_id": "client_id to be used for google api",
-      "scopes": [
+    "client_id": "client_id to be used for google api",
+    "scopes": [
 				"https://www.googleapis.com/auth/userinfo.email",
 				"https://www.googleapis.com/auth/userinfo.profile"
     ]

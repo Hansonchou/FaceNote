@@ -8,110 +8,110 @@ const Datastore = require('@google-cloud/datastore');
 const datastore = Datastore();
 
 module.exports = {
-    readNote: function(userProfile, contact) {
-        console.log('readNote');
-        createOrUpdateUserEntityIfOutdated_(userProfile);
-        return getNote_(userProfile.email, contact.fb_id);
-    },
+  readNote: function (userProfile, contact) {
+    console.log('readNote');
+    createOrUpdateUserEntityIfOutdated_(userProfile);
+    return getNote_(userProfile.email, contact.fb_id);
+  },
 
-    updateNote: function(userProfile, contact, note) {
-        console.log('updateNote');
-        createOrUpdateUserEntityIfOutdated_(userProfile);
-        return updateNote_(userProfile.email, contact, note);
-    }
+  updateNote: function (userProfile, contact, note) {
+    console.log('updateNote');
+    createOrUpdateUserEntityIfOutdated_(userProfile);
+    return updateNote_(userProfile.email, contact, note);
+  }
 };
 
-let getNote_ = function(userEmail, contactId) {
-    console.log('getNote: ' + userEmail + ' ' + contactId);
-    const contactKey = datastore.key([
-        'User', 
-        userEmail, 
+let getNote_ = function (userEmail, contactId) {
+  console.log('getNote: ' + userEmail + ' ' + contactId);
+  const contactKey = datastore.key([
+        'User',
+        userEmail,
         'Contact',
         contactId
     ]);
-    return getEntity_(contactKey)
-      .then((contact) => {
-        if (contact) {
-          console.log(contact.note);
-          return {
-              fb_id: contactId,
-              note_content: contact.note,
-              updated: contact.updated
-          };
-        } else {
-          return {
-              note_content: ''
-          };
-        }
+  return getEntity_(contactKey)
+    .then((contact) => {
+      if (contact) {
+        console.log(contact.note);
+        return {
+          fb_id: contactId,
+          note_content: contact.note,
+          updated: contact.updated
+        };
+      } else {
+        return {
+          note_content: ''
+        };
+      }
     });
 }
 
-let updateNote_ = function(userEmail, contact, note) {
-    console.log('updateNote: ' + userEmail + " " + contact.fb_id + " " + note);
-    const contactKey = getContactKey(userEmail, contact.fb_id);
-    const contactContent = {
-      name: contact.name,
-      note: note,
-      updated: new Date()
-    };
+let updateNote_ = function (userEmail, contact, note) {
+  console.log('updateNote: ' + userEmail + " " + contact.fb_id + " " + note);
+  const contactKey = getContactKey(userEmail, contact.fb_id);
+  const contactContent = {
+    name: contact.name,
+    note: note,
+    updated: new Date()
+  };
 
-    const contactEntity = {
-      key: contactKey,
-      data: contactContent
-    };
+  const contactEntity = {
+    key: contactKey,
+    data: contactContent
+  };
 
-    return datastore.upsert(contactEntity)
-      .then(() => {
-        // Task inserted successfully.
-        console.log("complete update: ")
-        console.log(contactEntity);
-        return getNote_(userEmail, contact.fb_id);
-      });    
+  return datastore.upsert(contactEntity)
+    .then(() => {
+      // Task inserted successfully.
+      console.log("complete update: ")
+      console.log(contactEntity);
+      return getNote_(userEmail, contact.fb_id);
+    });
 }
 
-let createOrUpdateUserEntityIfOutdated_ = function(profile) {
-    console.log('createOrUpdateUserEntityIfOutdated_');
-    const userKey = getUserKey_(profile.email);
-    // TODO: only update if not exist or if too old.
-    updateUser_(userKey, profile);
+let createOrUpdateUserEntityIfOutdated_ = function (profile) {
+  console.log('createOrUpdateUserEntityIfOutdated_');
+  const userKey = getUserKey_(profile.email);
+  // TODO: only update if not exist or if too old.
+  updateUser_(userKey, profile);
 };
 
-let updateUser_ = function(userKey, profile) {
-    console.log('updateUser');
-    profile.updated = new Date();
-    console.log(profile);
-    const user = {
-        key: userKey,
-        data: profile
-    };
-    datastore.upsert(user)
-      .then(() => {
+let updateUser_ = function (userKey, profile) {
+  console.log('updateUser');
+  profile.updated = new Date();
+  console.log(profile);
+  const user = {
+    key: userKey,
+    data: profile
+  };
+  datastore.upsert(user)
+    .then(() => {
       // Task inserted successfully.
       console.log("complete update: ")
       console.log(user);
     });
 }
 
-let getEntity_ = function(key) {
+let getEntity_ = function (key) {
   console.log('getEntity');
   return datastore.get(key)
-      .then((results) => {
-    const entity = results[0];
-    console.log(entity);
-    return entity;
-  });
+    .then((results) => {
+      const entity = results[0];
+      console.log(entity);
+      return entity;
+    });
 }
 
-let getUserKey_ = function(userEmail) {
-    return datastore.key([
-        'User', 
+let getUserKey_ = function (userEmail) {
+  return datastore.key([
+        'User',
         userEmail,
-    ]);    
+    ]);
 }
 
-let getContactKey = function(userEmail, contact_id) {
-    return datastore.key([
-        'User', 
+let getContactKey = function (userEmail, contact_id) {
+  return datastore.key([
+        'User',
         userEmail,
         'Contact',
         contact_id
